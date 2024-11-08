@@ -47,9 +47,9 @@ endfunction
 
 function! test#javascript#ember#executable() abort
   if filereadable('node_modules/.bin/ember')
-    return 'node_modules/.bin/ember exam'
+    return 'node_modules/.bin/ember exam --path="dist"'
   else
-    return 'ember exam'
+    return 'ember exam --path="dist"'
   endif
 endfunction
 
