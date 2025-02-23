@@ -32,15 +32,16 @@ function! test#javascript#playwright#build_args(args) abort
     \ && g:test#javascript#playwright#executable =~# s:yarn_command
     return filter(a:args, 'v:val != "--"')
   else
+    call add(a:args, '"')
     return a:args
   endif
 endfunction
 
 function! test#javascript#playwright#executable() abort
   if filereadable('node_modules/.bin/playwright')
-    return 'node_modules/.bin/playwright test'
+    return 'distrobox enter ubuntu -- bash -c "node_modules/.bin/playwright test -c playwright-ct.config.ts'
   else
-    return 'playwright test'
+    return 'npx playwright test -c playwright-ct.config.ts'
   endif
 endfunction
 
